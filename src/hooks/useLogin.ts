@@ -15,7 +15,8 @@ export default function useLogin() {
       const res = await authAPI.login({ username, password });
       if (res.data.success) {
         // save user to localStorage for demo
-        localStorage.setItem("user", JSON.stringify(res.data.data.user));
+        console.log("Login successful:", res.data);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
         navigate("/dashboard");
       } else {
         setError(res.data.message || "Login failed");

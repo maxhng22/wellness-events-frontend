@@ -1,28 +1,39 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-// import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
+import { useAuth } from "./auth/authProvider";
 
-export default function AppRouter() {
-  // Example: simple auth check (replace with real auth later)
-  const isLoggedIn = !!localStorage.getItem("user"); // you can replace with context or state
+function AppRoutes() {
+  const { user, loading } = useAuth();
+
+  // ⚠️ Critical: wait for session restore before rendering routes
+  if (loading) return <div>Loading...</div>;
 
   return (
+    <Routes>
+      <Route
+        path="/"
+        element={user ? <Navigate to="/dashboard" replace /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/login"
+        element={user ? <Navigate to="/dashboard" replace /> : <LoginPage />}
+      />
+      <Route
+        path="/dashboard"
+        element={user ? <Dashboard /> : <Navigate to="/login" replace />}
+      />
+      <Route path="*" element={<p>404 Not Found</p>} />
+    </Routes>
+  );
+}
+
+// ⚠️ Split into two components — hooks can't be used directly inside
+// the same component that renders <BrowserRouter>
+export default function AppRouter() {
+  return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={isLoggedIn ? <Navigate to="/dashboard" /> : <LoginPage />}
-        />
-        <Route
-          path="/login"
-          element={isLoggedIn ? <Navigate to="/dashboard" /> : <LoginPage />}
-        />
-        {/* <Route
-          path="/dashboard"
-          element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}
-        /> */}
-        <Route path="*" element={<p>404 Not Found</p>} />
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

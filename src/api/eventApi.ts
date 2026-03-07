@@ -8,5 +8,8 @@ export const eventsAPI = {
     listByUser() {
         return apiClient.get("/event");
     },
+    createEvent(data: {  eventId: string; proposedDates: string[]; location: string }) {
+        return apiClient.post("/events", data);
+    }
 
 };

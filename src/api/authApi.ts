@@ -10,6 +10,6 @@ export const authAPI = {
   },
 
   getCurrentUser() {
-    return apiClient.get("/auth/me");
+    return apiClient.get("/auth/profile");
   },
 };

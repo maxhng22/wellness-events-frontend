@@ -4,14 +4,31 @@ import { eventsAPI } from "../api/eventApi";
 
 export interface EventRow {
   _id: string;
-  eventItemId: { name: string };
-  vendorId: { name: string };
+  eventId: {
+    _id: string;
+    eventName: string;
+    vendorUsername: string;
+    vendorCompanyName: string;
+  };
+  vendorId: {
+    _id: string;
+    name: string;
+  } | null;
   proposedDates: string[];
+  companyName: string;
+  location: string;
   confirmedDate: string | null;
-  status: "pending" | "approved" | "rejected";
+  status: "pending" | "confirmed" | "cancelled";
+  remarks: string | null;
+  createdBy: {
+    _id: string;
+    username: string;
+    role: string;
+    companyName: string;
+    createdAt: string;
+  };
   createdAt: string;
-  remarks: string;
-  location: { postalCode: string; streetName: string };
+  updatedAt: string;
 }
 
 export default function useHREvents() {
@@ -21,6 +38,7 @@ export default function useHREvents() {
 
   const [selectedEvent, setSelectedEvent] = useState<EventRow | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
 
   // Fetch events on mount
   useEffect(() => {
@@ -39,7 +57,7 @@ export default function useHREvents() {
     };
 
     fetchEvents();
-  }, []);
+  }, [createModalOpen]);
 
   // Modal controls
   const openModal = (event: EventRow) => {
@@ -51,6 +69,15 @@ export default function useHREvents() {
     setModalOpen(false);
   };
 
+  const handleCreateEvent = () => {
+     setCreateModalOpen(true);
+    // Implementation for creating a new event
+  }
+
+  const closeCreateModal = () => {  
+    setCreateModalOpen(false);
+  }
+
   return {
     events,
     loading,
@@ -59,5 +86,9 @@ export default function useHREvents() {
     modalOpen,
     openModal,
     closeModal,
+    handleCreateEvent,
+    createModalOpen,
+    closeCreateModal,
+    
   };
 }
