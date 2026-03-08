@@ -1,93 +1,104 @@
-🌿 Wellness Events Frontend
-Overview
+# 🌿 Wellness Events — Frontend
 
-This is the ReactJS frontend for the Wellness Events web application.
-It allows HR users to create wellness events and Vendor users to view and approve/reject events.
+A role-based wellness event management platform built with **React + TypeScript**. HR users can create events with proposed dates and locations, while Vendor users can review and approve or reject them.
 
-Key features:
+---
 
-Role-based dashboards (HR / Vendor)
+## ✨ Features
 
-Event creation form with 3 proposed dates and location
+- 🔐 Role-based dashboards — **HR** and **Vendor** views
+- 📅 Event creation with 3 proposed dates & location autocomplete
+- ✅ Approve / Reject event modal for vendors
+- 🧩 Reusable components: `Button`, `Modal`, `DataTable`
+- 🛡️ Type-safe forms with validation
 
-Event detail modal with approve/reject functionality
+---
 
-Type-safe forms with validation
+## 🛠️ Tech Stack
 
-Reusable components: Button, Modal, DataTable
+| Layer | Technology |
+|---|---|
+| UI | ReactJS + TypeScript |
+| Styling | Tailwind CSS |
+| HTTP | Axios |
+| Routing | React Router v7 |
+| Deployment | Vercel |
 
-Technology Stack
+---
 
-ReactJS + TypeScript
+## 🚀 Getting Started
 
-Tailwind CSS for styling
-
-Axios for API calls
-
-React Router v7 for routing
-
-Deployed on Vercel (optional)
-
-Installation
-
-Clone the repository:
-
+### 1. Clone the repository
+```bash
 git clone https://github.com/<yourusername>/wellness-events-frontend.git
 cd wellness-events-frontend
+```
 
-Install dependencies:
-
+### 2. Install dependencies
+```bash
 npm install
+```
 
-Create .env file in the root and add:
+### 3. Configure environment
 
+Create a `.env` file in the project root:
+```env
 VITE_API_URL=https://wellness-events-backend.onrender.com/api
+```
 
-Update the URL if your backend is deployed elsewhere.
+> Update the URL if your backend is hosted elsewhere.
 
-Run the development server:
-
+### 4. Start the dev server
+```bash
 npm run dev
+```
 
-The app will be available at http://localhost:5173.
+App runs at **http://localhost:5173**
 
-Folder Structure
+---
+
+## 📁 Folder Structure
+```
 src/
 ├─ api/              # Axios API calls
 ├─ auth/             # Auth context & hooks
-├─ components/       # Reusable UI components (Button, Modal, DataTable, EventForm)
-├─ hooks/            # Custom hooks (e.g., useHREvents)
+├─ components/       # Reusable UI (Button, Modal, DataTable, EventForm)
+├─ hooks/            # Custom hooks (e.g. useHREvents)
 ├─ pages/            # Dashboard pages (HRDashboard, VendorDashboard, Login)
-├─ types/            # TypeScript types
-└─ App.tsx           # Main app component & routes
-Screenshots
+├─ types/            # TypeScript interfaces
+└─ App.tsx           # Root component & routes
+```
 
-Replace with your screenshots
+---
 
-HR Dashboard:
+## 📸 Screenshots
 
+| HR Dashboard | Vendor Dashboard | Event Modal |
+|---|---|---|
+| *(coming soon)* | *(coming soon)* | *(coming soon)* |
 
-Vendor Dashboard:
+---
 
+## 👤 Pre-Created Accounts
 
-Event Modal:
+| Role | Username | Password | Company |
+|---|---|---|---|
+| HR | `hr_admin` | `hr123` | WellnessCorp |
+| Vendor | `vendor_healthplus` | `vendor123` | HealthPlus |
 
+---
 
-Pre-Created Accounts
-Role	Username	Password	Company Name
-HR	hr_admin	hr123	WellnessCorp
-Vendor	vendor_healthplus	vendor123	HealthPlus
-Deployment
+## 🌐 Deployment
 
-Frontend is deployed on Vercel:
-https://wellness-events-frontend.vercel.app
+Frontend is live on Vercel:
+**[https://wellness-events-frontend.vercel.app](https://wellness-events-frontend.vercel.app)**
 
-Make sure your backend allows CORS and cookies for this frontend URL.
+> Ensure your backend has CORS and cookie support enabled for this origin.
 
-Notes
+---
 
-Reusable components simplify adding new features.
+## 📝 Notes
 
-Role-based access ensures vendors only see their events, HR sees theirs.
-
-Proper form validation prevents invalid data submission.
+- Reusable components make it easy to extend with new features
+- Vendors only see events assigned to them; HR sees their own
+- Form validation prevents incomplete or invalid submissions
