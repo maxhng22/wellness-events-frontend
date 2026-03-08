@@ -61,7 +61,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.error("Login error:", err);
       setLoginError(err.response?.data?.message || "Login failed");
     } finally {
-      // setLoginLoading(false);
+      setLoginLoading(false);
     }
   };
 

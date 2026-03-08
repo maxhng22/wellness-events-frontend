@@ -6,7 +6,7 @@ export const authAPI = {
   },
 
   logout() {
-    return apiClient.post("/auth/logout");
+    return apiClient.get("/auth/logout");
   },
 
   getCurrentUser() {
