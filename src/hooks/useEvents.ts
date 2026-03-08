@@ -11,6 +11,7 @@ export default function useHREvents() {
   const [selectedEvent, setSelectedEvent] = useState<EventRow | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [refreshFlag, setRefreshFlag] = useState(false); // to trigger refresh after creating event
 
 
 
@@ -31,7 +32,11 @@ export default function useHREvents() {
     };
 
     fetchEvents();
-  }, [createModalOpen]);
+  }, [refreshFlag]);
+
+  const triggerRefresh = () => {
+    setRefreshFlag(!refreshFlag);
+  };
 
   // Modal controls
   const openModal = (event: EventRow) => {
@@ -63,6 +68,7 @@ export default function useHREvents() {
     handleCreateEvent,
     createModalOpen,
     closeCreateModal,
+    triggerRefresh,
 
   };
 }
