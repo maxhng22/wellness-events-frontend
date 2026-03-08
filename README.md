@@ -30,7 +30,7 @@ A role-based wellness event management platform built with **React + TypeScript*
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<yourusername>/wellness-events-frontend.git
+git clone https://github.com/maxhng22/wellness-events-frontend
 cd wellness-events-frontend
 ```
 
