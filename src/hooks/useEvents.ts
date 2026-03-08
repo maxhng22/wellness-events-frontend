@@ -1,35 +1,7 @@
 // hooks/useHREvents.ts
 import { useState, useEffect } from "react";
 import { eventsAPI } from "../api/eventApi";
-
-export interface EventRow {
-  _id: string;
-  eventId: {
-    _id: string;
-    eventName: string;
-    vendorUsername: string;
-    vendorCompanyName: string;
-  };
-  vendorId: {
-    _id: string;
-    name: string;
-  } | null;
-  proposedDates: string[];
-  companyName: string;
-  location: string;
-  confirmedDate: string | null;
-  status: "pending" | "confirmed" | "cancelled";
-  remarks: string | null;
-  createdBy: {
-    _id: string;
-    username: string;
-    role: string;
-    companyName: string;
-    createdAt: string;
-  };
-  createdAt: string;
-  updatedAt: string;
-}
+import type { EventRow } from "../types/event.types";
 
 export default function useHREvents() {
   const [events, setEvents] = useState<EventRow[]>([]);
@@ -39,6 +11,8 @@ export default function useHREvents() {
   const [selectedEvent, setSelectedEvent] = useState<EventRow | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);
+
+
 
   // Fetch events on mount
   useEffect(() => {
@@ -70,11 +44,11 @@ export default function useHREvents() {
   };
 
   const handleCreateEvent = () => {
-     setCreateModalOpen(true);
+    setCreateModalOpen(true);
     // Implementation for creating a new event
   }
 
-  const closeCreateModal = () => {  
+  const closeCreateModal = () => {
     setCreateModalOpen(false);
   }
 
@@ -89,6 +63,6 @@ export default function useHREvents() {
     handleCreateEvent,
     createModalOpen,
     closeCreateModal,
-    
+
   };
 }

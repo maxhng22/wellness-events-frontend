@@ -1,10 +1,11 @@
 // pages/HRDashboard.tsx
 import Button from "../components/Button";
 import DataTable, { type Column } from "../components/DataTable";
-import useHREvents, { type EventRow } from "../hooks/useEvents";
-import Modal from "../components/Modal";
+import useHREvents from "../hooks/useEvents";
 import { useAuth } from "../auth/authProvider";
-import CreateEventModal from "../components/EventForm";
+import CreateEventModal from "../components/CreateEventModal";
+import type { EventRow } from "../types/event.types";
+import ViewEventModal from "../components/ViewEventModal";
 
 export default function Dashboard() {
   const {
@@ -20,15 +21,12 @@ export default function Dashboard() {
     closeCreateModal,
   } = useHREvents();
 
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const columns: Column<EventRow>[] = [
     { header: "Event Name", accessor: (row) => (row.eventId as any)?.eventName ?? "-" },
     { header: "Vendor", accessor: (row) => (row.eventId as any)?.vendorUsername ?? "-" },
-    {
-      header: "Confirmed Date",
-      accessor: (row) => row.confirmedDate || "-",
-    },
+    { header: "Confirmed Date", accessor: (row) => row.confirmedDate || "-" },
     { header: "Status", accessor: (row) => row.status ?? "-" },
     { header: "Date Created", accessor: (row) => row.createdAt ?? "-" },
     {
@@ -46,26 +44,30 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
-        {user?.role === "hr" ? "HR Dashboard" : "Vendor Dashboard"}
-      </h1>
 
-      {/* <Modal isOpen={true} onClose={closeModal} title="Event Details"> */}
+      {/* ── Top Bar ── */}
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
+            {user?.role === "hr" ? "HR Dashboard" : "Vendor Dashboard"}
+          </h1>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
+            Welcome back, <span className="font-medium">{user?.username}</span>
+          </p>
+        </div>
 
-      {/* </Modal> */}
-
-      <div className="mb-4 flex justify-end">
-
-        {user?.role === "hr" && (
-          <Button
-            onClick={handleCreateEvent}
-            type="submit"
-            variant="primary"
-            size="lg"
-          >
-            Create New Event
-          </Button>)}
+        <div className="flex items-center gap-3">
+          {user?.role === "hr" && (
+            <Button onClick={handleCreateEvent} variant="primary" size="md">
+              + Create Event
+            </Button>
+          )}
+          <Button onClick={logout} variant="danger" size="md">
+            Logout
+          </Button>
+        </div>
       </div>
+
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
       <DataTable
@@ -75,37 +77,21 @@ export default function Dashboard() {
         emptyMessage="No events created yet."
       />
 
-      <CreateEventModal isOpen={createModalOpen} onClose={closeCreateModal} onCreated={() => { closeCreateModal }} />
-      <Modal isOpen={modalOpen} onClose={closeModal} title="Event Details">
-        {selectedEvent && (
-          <div className="space-y-2 text-gray-800 dark:text-gray-200">
-            <p>
-              <strong>Event:</strong> {selectedEvent.eventId.eventName}
-            </p>
-            <p>
-              <strong>Vendor:</strong> {selectedEvent.vendorId?.name || "-"}
-            </p>
-            <p>
-              <strong>Proposed Dates:</strong>{" "}
-              {selectedEvent.proposedDates.join(", ")}
-            </p>
-            <p>
-              <strong>Confirmed Date:</strong>{" "}
-              {selectedEvent.confirmedDate ?? "-"}
-            </p>
-            <p>
-              <strong>Status:</strong> {selectedEvent.status}
-            </p>
-            <p>
-              <strong>Remarks:</strong> {selectedEvent.remarks || "-"}
-            </p>
-            <p>
-              <strong>Location:</strong>{" "}
-              {selectedEvent.location} ({selectedEvent.location})
-            </p>
-          </div>
-        )}
-      </Modal>
+      {/* Create Event Modal */}
+      <CreateEventModal
+        isOpen={createModalOpen}
+        onClose={closeCreateModal}
+        onCreated={closeCreateModal}
+      />
+
+      {/* View Event Modal */}
+      <ViewEventModal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        selectedEvent={selectedEvent}
+        user={user!}
+      />
+   
     </div>
   );
 }
