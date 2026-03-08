@@ -66,7 +66,7 @@ src/
 ├─ hooks/            # Custom hooks (e.g. useHREvents)
 ├─ pages/            # Dashboard pages (HRDashboard, VendorDashboard, Login)
 ├─ types/            # TypeScript interfaces
-└─ utils.tsx         # Date formatters, validators & common helpers
+└─ utils/         # Date formatters, validators & common helpers
 └─ App.tsx           # Root component & routes
 ```
 
