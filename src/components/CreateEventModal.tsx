@@ -116,6 +116,8 @@ export default function CreateEventModal({ isOpen, onClose, onCreated }: CreateE
     setEventId("");
     setProposedDates(["", "", ""]);
     setLocation("");
+    setLocationInput("");
+    setLocationSuggestions([]);
     setError(null);
   };
 
