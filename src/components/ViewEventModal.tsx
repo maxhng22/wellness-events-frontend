@@ -39,6 +39,7 @@ export default function ViewEventModal({ isOpen, onClose, title, selectedEvent, 
   const [remark, setRemark] = useState("");
   const [error, setError] = useState<string | null>(null);
 
+  //approve event function
   const handleApprove = async () => {
     if (!selectedEvent) return;
     try {
@@ -50,6 +51,7 @@ export default function ViewEventModal({ isOpen, onClose, title, selectedEvent, 
     }
   };
 
+  //reject event function
   const handleReject = async () => {
     if (!selectedEvent) return;
     try {
@@ -61,8 +63,10 @@ export default function ViewEventModal({ isOpen, onClose, title, selectedEvent, 
     }
   };
 
+  // Close modal and reset state
   if (!isOpen) return null;
 
+  // Determine if the event is actionable (i.e. can be approved/rejected)
   const status = selectedEvent?.status ?? "";
   const isActionable = user?.role === "vendor" && status !== "confirmed" && status !== "cancelled";
   const statusCls = statusStyles[status.toLowerCase()] ?? "bg-gray-100 text-gray-600 ring-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:ring-gray-600";

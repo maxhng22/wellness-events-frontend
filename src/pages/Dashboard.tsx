@@ -24,6 +24,7 @@ export default function Dashboard() {
 
   const { user, logout } = useAuth();
 
+  // Define table columns
   const columns: Column<EventRow>[] = [
     { header: "Event Name", accessor: (row) => (row.eventId as any)?.eventName ?? "-" },
     { header: "Vendor", accessor: (row) => (row.eventId as any)?.vendorUsername ?? "-" },
@@ -62,6 +63,7 @@ export default function Dashboard() {
     },
   ];
 
+  // Calculate summary stats
   const totalEvents = events.length;
   const confirmed = events.filter(e => e.status?.toLowerCase() === "confirmed").length;
   const pending = events.filter(e => e.status?.toLowerCase() === "pending").length;

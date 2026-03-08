@@ -40,6 +40,7 @@ export default function CreateEventModal({ isOpen, onClose, onCreated }: CreateE
     loadEvents();
   }, []);
 
+  // Handle date changes and ensure no duplicates
   const handleDateChange = (index: number, value: string) => {
     if (proposedDates.includes(value)) {
       setError("You cannot choose the same date twice");
@@ -51,6 +52,7 @@ export default function CreateEventModal({ isOpen, onClose, onCreated }: CreateE
     setError(null);
   };
 
+4// Handle form submission
   const handleSubmit = async () => {
     if (!eventId || proposedDates.some((d) => !d) || !location) {
       setError("Please fill in all fields before submitting");
@@ -75,6 +77,7 @@ export default function CreateEventModal({ isOpen, onClose, onCreated }: CreateE
     }
   };
 
+  // Reset form fields
   const clearForm = () => {
     setEventId("");
     setProposedDates(["", "", ""]);
@@ -82,6 +85,7 @@ export default function CreateEventModal({ isOpen, onClose, onCreated }: CreateE
     setError(null);
   };
 
+  // Close modal and reset state
   if (!isOpen) return null;
 
   const inputClass =

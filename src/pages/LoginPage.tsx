@@ -7,8 +7,10 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  // Get login function and state from auth context
   const { login, loginLoading, loginError } = useAuth();
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await login(username, password);

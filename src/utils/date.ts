@@ -1,3 +1,5 @@
+
+// Utility function to format date strings
 export const formatDate = (date: string) =>
   new Date(date).toLocaleDateString("en-SG", {
     day: "2-digit",

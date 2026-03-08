@@ -50,6 +50,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
+  // login function
   const login = async (username: string, password: string) => {
     setLoginLoading(true);
     setLoginError(null);
@@ -65,6 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // logout function
   const logout = async () => {
     await authAPI.logout();
     setUser(null);

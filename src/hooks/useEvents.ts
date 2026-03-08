@@ -34,6 +34,8 @@ export default function useHREvents() {
     fetchEvents();
   }, [refreshFlag]);
 
+
+  // Trigger a refresh by toggling the refreshFlag
   const triggerRefresh = () => {
     setRefreshFlag(!refreshFlag);
   };
@@ -43,16 +45,20 @@ export default function useHREvents() {
     setSelectedEvent(event);
     setModalOpen(true);
   };
+
+  // Close modal and reset state
   const closeModal = () => {
     setSelectedEvent(null);
     setModalOpen(false);
   };
 
+  // Handle create event button click
   const handleCreateEvent = () => {
     setCreateModalOpen(true);
     // Implementation for creating a new event
   }
 
+  // Close create event modal and reset state
   const closeCreateModal = () => {
     setCreateModalOpen(false);
   }
