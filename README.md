@@ -81,10 +81,14 @@ src/
 
 ## 👤 Pre-Created Accounts
 
-| Role | Username | Password | Company |
-|---|---|---|---|
-| HR | `hr_admin` | `hr123` | WellnessCorp |
-| Vendor | `vendor_healthplus` | `vendor123` | HealthPlus |
+| Role | Username | Password | Company | Events |
+|---|---|---|---|---|
+| Vendor | `vendor_healthplus` | `123456` | HealthPlus Pte Ltd | Health Talk, Blood Pressure Screening |
+| Vendor | `vendor_medilife` | `vendor1` | MediLife Services Pte Ltd | Eye Screening |
+| Vendor | `vendor_fitwell` | `vendor2` | FitWell Pte Ltd | Fitness Assessment |
+| Vendor | `vendor_mindcare` | `vendor3` | MindCare Wellness Pte Ltd | Mental Wellness Talk |
+| HR | `hr_techcorp` | `1234hr1` | TechCorp | — |
+| HR | `hr_globalinc` | `1234hr2` | GlobalInc | — |
 
 ---
 
