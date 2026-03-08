@@ -75,10 +75,7 @@ src/
 
 | HR Dashboard | Vendor Dashboard | Event Modal |
 |---|---|---|
-| *<img width="1272" height="673" alt="image" src="https://github.com/user-attachments/assets/877acf13-7eb4-47e5-a8e0-e1b078e34e04" />
-* | *<img width="1275" height="670" alt="image" src="https://github.com/user-attachments/assets/c605c2e4-c844-4438-bacb-ed6b7679520e" />
-* | *<img width="1270" height="670" alt="image" src="https://github.com/user-attachments/assets/06933df4-e62f-4190-9c00-587707572c34" />
-* |
+| <img width="400" src="https://github.com/user-attachments/assets/877acf13-7eb4-47e5-a8e0-e1b078e34e04" /> | <img width="400" src="https://github.com/user-attachments/assets/c605c2e4-c844-4438-bacb-ed6b7679520e" /> | <img width="400" src="https://github.com/user-attachments/assets/06933df4-e62f-4190-9c00-587707572c34" /> |
 
 ---
 
