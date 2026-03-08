@@ -67,6 +67,7 @@ src/
 ├─ pages/            # Dashboard pages (HRDashboard, VendorDashboard, Login)
 ├─ types/            # TypeScript interfaces
 └─ App.tsx           # Root component & routes
+└─ utils.tsx         # Date formatters, validators & common helpers
 ```
 
 ---
